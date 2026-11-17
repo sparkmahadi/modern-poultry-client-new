@@ -1,0 +1,132 @@
+import React from 'react';
+import { createBrowserRouter } from 'react-router';
+import MainLayout from '../layouts/Main';
+import RegisterPage from '../pages/Register/Register';
+import LoginPage from '../pages/Login/Login';
+import Home from '../pages/Home/Home';
+import Categories from './../pages/Categories/Categories';
+import Products from './../pages/Products/Products';
+import ProductDetail from './../pages/Products/ProductDetail';
+import CategoryDetail from './../pages/Categories/CategoryDetail';
+import CreateSell from '../pages/Sales/CreateSell/CreateSell';
+import CustomerManager from '../pages/Customers/CustomerManager';
+import SupplierManager from './../pages/Suppliers/SupplierManager';
+import Dashboard from './../pages/Dashboard/Dashboard';
+import SupplierDetails from './../pages/Suppliers/SupplierDetails';
+import InventoryViewer from '../pages/Inventory/InventoryViewer';
+import TransactionsList from '../pages/Transactions/TransactionsList';
+import PurchaseEdit from '../pages/Purchase/PurchaseEdit';
+import CustomerDetails from '../pages/Customers/CustomerDetails';
+import DailySales from '../pages/Sales/SalesReports/DailySales';
+import BatchList from '../pages/FarmBatches/BatchList';
+import CreateBatchForm from '../pages/FarmBatches/CreateBatchForm';
+import BatchDetails from '../pages/FarmBatches/BatchDetails/BatchDetails';
+import SaleDetails from '../pages/Sales/SaleDetails';
+import PaymentAccounts from '../pages/PaymentAccounts/PaymentAccounts';
+import CreatePaymentAccount from '../pages/PaymentAccounts/CreatePaymentAccount';
+import PurchaseManager from '../pages/Purchase/PurchaseManager';
+import SalesManager from '../pages/Sales/SalesManager/SalesManager';
+import BillsList from '../pages/Expenses/BillsList';
+import ExpenseThreads from '../pages/Expenses/ExpenseThreads';
+import SalesReports from '../pages/Sales/SalesReports/SalesReports';
+import PurchaseReports from '../pages/Purchase/PurchaseReports/PurchaseReports';
+import DailyPurchases from '../pages/Purchase/PurchaseReports/DailyPurchases';
+import ReportsPage from '../pages/Reports/ReportsPage';
+import CreatePurchase from '../pages/Purchase/CreatePurchase/CreatePurchase';
+import ProtectedRoute from './ProtectedRoute';
+import InventoryDetail from '../pages/Inventory/InventoryDetail';
+import ProductWisePurchases from '../pages/Purchase/ProductWisePurchases';
+import ProductWiseSales from '../pages/Sales/ProductWiseSales';
+import ExpenseThreadDetails from '../pages/Expenses/ExpenseThreadDetails';
+import LendMoney from '../pages/LendMoney/LendMoney';
+import BorrowMoney from '../pages/BorrowMoney/BorrowMoney';
+import DisposeProducts from '../pages/DisposeProducts/DisposeProducts';
+import PurchaseReturn from '../pages/Purchase/PurchaseReturn/PurchaseReturn';
+import PurchaseReturnList from '../pages/Purchase/PurchaseReturn/PurchaseReturnList';
+import SalesReturnList from '../pages/Sales/SalesReturn/SalesReturnList';
+import SalesReturn from '../pages/Sales/SalesReturn/SalesReturn';
+import DailyBusinessReport from '../pages/Reports/DailyBusinessReport';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <MainLayout />,
+    children: [
+      // PUBLIC ROUTES
+      { path: '/', element: <Home /> },
+      { path: '/register', element: <RegisterPage /> },
+      { path: '/login', element: <LoginPage /> },
+
+      // 🔐 PROTECTED ROUTES WRAPPER
+      {
+        element: <ProtectedRoute />,
+        children: [
+          { path: '/dashboard', element: <Dashboard /> },
+
+          { path: '/categories', element: <Categories /> },
+          { path: '/categories/:id', element: <CategoryDetail /> },
+
+          { path: '/products', element: <Products /> },
+          { path: '/products/:id', element: <ProductDetail /> },
+
+          { path: '/inventory', element: <InventoryViewer /> },
+          { path: '/inventory/:id', element: <InventoryDetail /> },
+
+          { path: '/customers', element: <CustomerManager /> },
+          { path: '/customers/:id', element: <CustomerDetails /> },
+
+          { path: '/suppliers', element: <SupplierManager /> },
+          { path: '/suppliers/:id', element: <SupplierDetails /> },
+
+          { path: '/transactions', element: <TransactionsList /> },
+
+          { path: '/payment_accounts', element: <PaymentAccounts /> },
+          { path: '/payment_accounts/create', element: <CreatePaymentAccount /> },
+
+          { path: '/expense-threads', element: <ExpenseThreads /> },
+          { path: "/expense-threads/:id", element: <ExpenseThreadDetails /> },
+
+          { path: '/bills', element: <BillsList /> },
+
+          { path: '/sales', element: <SalesManager /> },
+
+          { path: '/sales-returns', element: <SalesReturnList /> },
+          { path: '/sales-return/:id', element: <SalesReturn /> },
+          { path: '/sales-return/add', element: <SalesReturn /> },
+
+          { path: '/sales/product-wise-sales', element: <ProductWiseSales /> },
+          { path: '/sales/:saleId', element: <SaleDetails /> },
+          { path: '/sales/daily-sales', element: <DailySales /> },
+          { path: '/sales/sales-reports', element: <SalesReports /> },
+          { path: '/sales/create-sale', element: <CreateSell /> },
+
+          { path: '/purchases', element: <PurchaseManager /> },
+
+          { path: '/purchase-returns', element: <PurchaseReturnList /> },
+          { path: '/purchase-return/:id', element: <PurchaseReturn /> },
+          { path: '/purchase-return/add', element: <PurchaseReturn /> },
+
+          { path: '/purchases/daily-purchases', element: <DailyPurchases /> },
+          { path: '/purchases/product-wise-purchases', element: <ProductWisePurchases /> },
+          { path: '/purchases/create', element: <CreatePurchase /> },
+          { path: '/purchases/edit/:id', element: <PurchaseEdit /> },
+          { path: '/purchases/purchase-reports', element: <PurchaseReports /> },
+
+          { path: '/farm-batches', element: <BatchList /> },
+          { path: '/farm-batches/:batchId', element: <BatchDetails /> },
+          { path: '/farm-batches/create-batch', element: <CreateBatchForm /> },
+
+          { path: '/lend-money', element: <LendMoney /> },
+          { path: '/borrow-money', element: <BorrowMoney /> },
+          { path: '/dispose-products', element: <DisposeProducts /> },
+
+
+          { path: '/reports', element: <ReportsPage /> },
+          { path: '/reports/daily-summary', element: <DailyBusinessReport /> }
+        ],
+      },
+    ],
+  },
+]);
+
+export default router;
